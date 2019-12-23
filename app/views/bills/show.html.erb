@@ -2,24 +2,44 @@
 <h2>Bill Information:</h2>
 <p></p>
 <p>
-  <strong>User Name:</strong>
-  <%= @bill_info.user_id %>
+  <strong>User:</strong>
+  <%= @bill.user_id %>
 </p>
 
 <p>
   <strong>Bill Type:</strong>
-  <%= @bill_info.bill_type %>
+  <%= @bill.bill_type %>
 </p>
 
 <p>
   <strong>Balance:</strong>
-  <%= @bill_info.amount %>
+  <%= @bill.amount %>
 </p>
 
 <p>
-  <strong>Bill Status:</strong>
-  <%= @bill_info.bill_status %>
+  <strong>Bill Percent:</strong>
+  <%= @bill.percent %>
 </p>
 
-<%= link_to 'Edit', edit_bill_info_path(@bill_info) %> |
-<%= link_to 'Back', bill_info_path %>
+<p>
+  <strong>Created Date:</strong>
+  <%= @bill.created_at %>
+</p>
+
+<p>
+  <strong>Replenishment Date:</strong>
+  <%= @bill.replanishment_at %>
+</p>
+
+<p>
+  <strong>Expired Date:</strong>
+  <%= @bill.expired_bill_at %>
+</p>
+
+<p>
+  <strong>Amount Limit:</strong>
+  <%= @bill.amount_limit %>
+</p>
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bill_path %>

@@ -1,2 +1,2 @@
-json.extract! bill, :user_name, :bill_type, :amount, :bill_status, :created_date
-json.url bill_info_url(bill, format: :json)
+json.extract! bill, :user_id, :bill_type, :amount, :percent, :created_at, :updated_at, :close_at, :replanishment_at, :regular_replanishment_amount, :expired_bill_at, :early_close_status, :amount_limit
+json.url bill_url(bill, format: :json)

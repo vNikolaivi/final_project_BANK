@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Managers</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>&nbsp;Name&nbsp;</th>
+    <th>&nbsp;Surname&nbsp;</th>
+    <th>&nbsp;Nickname&nbsp;</th>
+    <th>&nbsp;email&nbsp;</th>
+    <th>&nbsp;Password&nbsp;</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @managers.each do |manager| %>
+    <tr>
+      <td><%= manager.id %>&nbsp;</td>
+      <td>&nbsp;<%= manager.first_name %>&nbsp;</td>
+      <td>&nbsp;<%= manager.last_name %>&nbsp;</td>
+      <td>&nbsp;<%= manager.nickname %>&nbsp;</td>
+      <td>&nbsp;<%= manager.email %>&nbsp;</td>
+      <td>&nbsp;<%= manager.encrypted_password %>&nbsp;</td>
+      <td><%= link_to 'Show', manager %>&nbsp;&nbsp;</td>
+      <td><%= link_to 'Edit', edit_manager_path(manager) %>&nbsp;&nbsp;</td>
+      <td><%= link_to 'Delete', manager, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Manager', new_manager_path %>

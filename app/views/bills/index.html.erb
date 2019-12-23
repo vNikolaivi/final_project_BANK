@@ -6,26 +6,30 @@
   <thead>
   <tr>
     <th>| # |</th>
-    <th>&nbsp;User Name&nbsp; |</th>
     <th>&nbsp;Bill Type  |</th>
     <th>&nbsp;Balance  |</th>
-    <th>&nbsp;Bill Status  |</th>
+    <th>&nbsp;Percent  |</th>
     <th>&nbsp;Created Date  |</th>
+    <th>&nbsp;Replenishment Date  |</th>
+    <th>&nbsp;Expired Bill Date  |</th>
+    <th>&nbsp;Amount Limit  |</th>
     <th colspan="3">Operations</th>
   </tr>
   </thead>
 
   <tbody>
-  <% @bill_info.each do |bill_info| %>
+  <% @bill.each do |bill| %>
     <tr>
-      <td><%= bill_info.id %>&nbsp;</td>
-      <td><%= bill_info.username %>&nbsp;</td>
-      <td>&nbsp;<%= bill_info.bill_type %>&nbsp;</td>
-      <td>&nbsp;<%= bill_info.amount %>&nbsp;</td>
-      <td>&nbsp;<%= bill_info.bill_status %>&nbsp;</td>
-      <td>&nbsp;<%= bill_info.created_at %>&nbsp;</td>
+      <td><%= bill.id %>&nbsp;</td>
+      <td>&nbsp;<%= bill.bill_type %>&nbsp;</td>
+      <td>&nbsp;<%= bill.amount %>&nbsp;</td>
+      <td>&nbsp;<%= bill.percent %>&nbsp;</td>
+      <td>&nbsp;<%= bill.created_at %>&nbsp;</td>
+      <td>&nbsp;<%= bill.replanishment_at %>&nbsp;</td>
+      <td>&nbsp;<%= bill.expired_bill_at %>&nbsp;</td>
+      <td>&nbsp;<%= bill.amount_limit %>&nbsp;</td>
       <td><%= link_to 'Show', bill %></td>
-      <td><%= link_to 'Edit', edit_bills_info_path(bill) %></td>
+      <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
       <td><%= link_to 'Delete', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
@@ -34,4 +38,4 @@
 
 <br>
 
-<%= link_to 'Create New Bill', new_bills_info_path %>
+<%= link_to 'Create New Bill', new_bill_path %>

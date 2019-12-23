@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-4">
+  <% form_with(model: user, local: true) do |form| %>
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <h3> Create New User</h3>
+    <div class="form-group">
+      <%= form.label :role %>
+      <%= form.select :role, ['user', 'manager'], :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.text_field :email, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.text_field :encrypted_password, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password_confirmation %>
+      <%= form.text_field :reset_password_token, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :birthday %>
+      <%= form.text_field :birthday, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :geneder %>
+      <%= form.text_field :geneder, :autofocus => true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :phone %>
+      <%= form.text_field :phone, :autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="action">
+    <%= form.submit 'Create'%>
+    </div>
+  <% end %>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,1 @@
-json.partial! "bills_info/bill_info", bill_info: @bill_info
+json.partial! "bills/bill", bill: @bill

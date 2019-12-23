@@ -1,42 +1,53 @@
-<%= form_with(model: bill_info, local: true) do |form| %>
-  <% if bill_info.errors.any? %>
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-4">
+<%= form_with(model: bill, local: true) do |form| %>
+  <% if bill.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bill.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-        <% bill_info.errors.full_messages.each do |message| %>
+        <% bill.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_name %>
-    <%= form.text_field :user_name %>
+  <div class="form-group">
+     <%= form.label :bill_type %>
+    <%= form.text_field :bill_type, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :bill_type %>
-    <%= form.text_field :bill_type %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :amount %>
-    <%= form.text_field :amount %>
+    <%= form.text_field :amount, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :bill_status %>
-    <%= form.text_field :bill_status %>
+  <div class="form-group">
+    <%= form.label :percent %>
+    <%= form.text_field :percent, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :created_at %>
-    <%= form.text_field :created_at %>
+<div class="form-group">
+  <%= form.label :replenishment_at %>
+  <%= form.text_field :replanishment_at, class: "form-control" %>
+</div>
+
+  <div class="form-group">
+    <%= form.label :expired_bill_at %>
+    <%= form.text_field :expired_bill_at, class: "form-control" %>
   </div>
+
+<div class="form-group">
+  <%= form.label :amount_limit %>
+  <%= form.text_field :amount_limit, class: "form-control" %>
+</div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create Bill", class: "btn-primary" %>
   </div>
 <% end %>
+    </div>
+  </div>
+</div>
