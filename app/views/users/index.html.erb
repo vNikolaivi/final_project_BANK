@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <h3>Users</h3>
+    <%= form_tag users_path, :method => 'get' do %>
+    <%= select_tag 'filter', options_for_select(['All', 'Users', 'Managers'], @filter) %>
+      <%= submit_tag 'Filter By Role', :name => nil %>
+      <% end %>
+    <div class="column">
+      <table class="table">
+        <tbody>
+        <th>Name</th><th>Surname</th><th>email</th><th>Birthday</th><th>Geneder</th><th>phone</th><th>User Type</th><th>Delete</th>
+        <% @users.each do |user| %>
+        <tr>
+          <% render user %>
+        </tr>
+        <% end %>
+        </tbody>
+      </table>
+  </div>
+  </div>
+  <% link_to 'Create a New User / Manager', new_user_path, :class => 'button-xs' %>
+</div>
