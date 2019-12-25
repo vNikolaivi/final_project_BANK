@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  resources :cards
-  devise_for :users
+
+  root to: 'persons#index'
+  devise_for :users, path: 'admin'
+  resources :users do
+    resources :bills
+    resources :transactions
+  end
+
   resources :users
-  resources :persons
+  resources :cards
   resources :bills
   resources :transactions
   resources :managers
-  #root to: 'users#index'
 
 
   post '/bill_info', to: 'bill_info#create'
@@ -23,7 +28,7 @@ Rails.application.routes.draw do
 
     #resources :users, only: [:new, :create]
   #user_root GET    /persons/profile(.:format)             persons#profile
-  #root 'index'
+    #root 'index'
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

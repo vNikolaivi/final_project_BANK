@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bank</title>
+
+    <title><%= content_for?(:title) ? yield(:title) : "VIYA Bank" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "VIYA Bank" %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'true' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'true' %>
      </head>
-  <div class="container">
-    <div class="row justify-content-start">
-      <div class="col-4">
   <body>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <% if user_signed_in? %>
-    <span>Hello, <%= current_user.email %></span>
-    <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-  <% else %>
-      <p class="text-right">
-      <%= link_to 'Sign in', new_user_session_path %>&nbsp;&nbsp;|&nbsp;<%= link_to 'Registration', new_user_registration_path %>
-      </p>
-    <p class="text-left">
-      <%= link_to 'User', users_path %>&nbsp;&nbsp;|&nbsp;<%= link_to 'Manager', managers_path %> | <%= link_to 'Bill', bills_path %> | <%= link_to 'Transaction', transactions_path %>
-    </p>
-    <% end %>
-
+  <header>
+    <%= render 'layouts/navigation' %>
+  </header>
+  <main role="main">
+    <%= render 'layouts/messages' %>
+    <div class="container">
+      <div class="row justify-content-start">
+        <div class="col-4">
+          <br/>
+          <br/>
+          <br/>
     <%= yield %>
+        </div>
+      </div>
+    </div>
+  </main>
   </body>
-  </div>
-  </div>
-  </div>
-</html>
+  </html>

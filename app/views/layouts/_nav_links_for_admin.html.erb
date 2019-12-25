@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <span>Hello, <%= current_user.email %></span>
+  <% if current_user.try(:user?) %>
+    <li><%= link_to 'My Accounts', users_path(current_user) %></li>
+    <li><%= link_to 'Bills', bills_path(current_user) %></li>
+    <li><%= link_to 'Transactions', transactions_path(current_user) %></li>
+    <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+  <% elsif current_user.try(:admin?) or current_user.try(:superadmin?) %>
+    <li><%= link_to 'Owners', users_path %></li>
+    <li><%= link_to 'Client Cards', cards_path %></li>
+    <li><%= link_to 'Managers', managers_path %></li>
+    <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+  <% end %>
+  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+<% else %>
+  <li><%= link_to 'Sign in', new_user_session_path %></li>
+  <li><%= link_to 'Registration', new_user_registration_path %></li>
+  <% end %>

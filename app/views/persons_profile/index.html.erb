@@ -1,3 +1,4 @@
+<div><%= image_tag("Money-512.png", size: "50x50") %></div>
 <h2>Welcome to VIYA Bank</h2>
 <br>
 <br>
@@ -9,7 +10,7 @@
     <p> Here are some things you can do:</p>
     <ul>
       <li> Edit your <%= link_to 'Profile', edit_user_registration_path %> </li>
-      <li>Set up an <%= link_to 'account', user_accounts_path(current_user) %></li>
-    </ul>
+      <li>Set up an <%= link_to 'Account', user_path(current_user) %></li>
+      </ul>
   <% end %>
 <% end %>
