@@ -2,20 +2,28 @@ class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :index]
 
   def new
+    #login Page - new.html.erb
   end
 
   def login
   end
 
   def create
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
-      sessions[:user_id] = @user.id
-       redirect_to '/index'
-      else
-      redirect_to '/login'
+    @user = User.find_by(resource_name: params[:resource_name])
+    @password = params[:resource_name][:password]
+    if @user&.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to '/index', notice: 'Logged in successfully'
+    else
+      redirect_to '/login', alert: 'Invalid username/password combination'
     end
   end
+
+  def destroy
+    reset_session
+    redirect_to login_path, notice: 'You have been logged out'
+  end
+
   def page_requires_login
   end
 end

@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "VIYA Bank" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "VIYA Bank" %>">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <title><%= content_for?(:title) ? yield(:title) : "VIYA Bank" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "VIYA Bank" %>">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'true' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'true' %>
+</head>
+<body>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'true' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'true' %>
-     </head>
-  <body>
-
-  <header>
-    <%= render 'layouts/navigation' %>
-  </header>
-  <main role="main">
-    <%= render 'layouts/messages' %>
-    <div class="container">
-      <div class="row justify-content-start">
-        <div class="col-4">
-          <br/>
-          <br/>
-          <br/>
-    <%= yield %>
-        </div>
+<header>
+  <%= render 'layouts/navigation' %>
+</header>
+<main role="main">
+  <%= render 'layouts/messages' %>
+  <div class="container">
+    <div class="row justify-content-start">
+      <div class="col-4">
+        <br/>
+        <br/>
+        <br/>
+        <%= yield %>
       </div>
     </div>
-  </main>
-  </body>
-  </html>
+  </div>
+</main>
+</body>
+</html>

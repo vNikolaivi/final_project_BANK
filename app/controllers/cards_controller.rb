@@ -20,6 +20,7 @@ class CardsController < ApplicationController
   # GET /cards/1/edit
   def edit
   end
+
   # POST /cards
   # POST /cards.json
   def create
@@ -34,6 +35,7 @@ class CardsController < ApplicationController
       end
     end
   end
+
   # PATCH/PUT /cards/1
   # PATCH/PUT /cards/1.json
   def update
@@ -47,6 +49,7 @@ class CardsController < ApplicationController
       end
     end
   end
+
   # DELETE /cards/1
   # DELETE /cards/1.json
   def destroy
@@ -56,7 +59,9 @@ class CardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_card
     @card = Card.find(params[:id])

@@ -1,17 +1,33 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy] #authenticate_user!
+  #set_user, only: [:show, :edit, :update, :destroy]
+  # after_action :verify_authorized
+
   def index
-    @users = User.all
+    if params[:filter] == 'Users'
+      @users = User.where('role = 0')
+      @filter = 'Users'
+    elsif params[:filter] == 'Managers'
+      @users = User.where('role = 1')
+      @filter = 'Managers'
+    elsif params[:filter] == 'Admins'
+      @users = User.where('role = 2')
+      @filter = 'Admins'
+    else
+      @users = User.all
+      @filter = 'All'
+    end
+    #authorize User
   end
 
   def show
     @user = User.find(params[:id])
-    #authorize @user
+    # authorize @user
   end
 
   def new
     @user = User.new
-      #authorize User
+    # authorize User
   end
 
   def edit
@@ -22,21 +38,21 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to action: "index", notice: 'User was successfully created.' }
+        format.html { redirect_to action: 'index', notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+    #authorize current_user
   end
-
 
 
   def update
     respond_to do |format|
       @user = User.find(params[:id])
-      #authorize @user
+      # authorize @user
       if @user.update(user_params)
 
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -51,7 +67,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    #authorize user
+    # authorize user
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
       format.json { head :no_content }
@@ -59,11 +75,12 @@ class UsersController < ApplicationController
   end
 
   private
+
   def set_user
     @user = User.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :encrypted_password, :birthday, :geneder, :phone)
+    params.require(:user).permit(:city_id, :role, :first_name, :last_name, :nickname, :email, :encrypted_password, :password_confirmation, :password_reset_token, :current_password, :birthday, :geneder, :phone)
   end
 end
