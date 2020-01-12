@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     # authorize @user
   end
 
@@ -31,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+
   end
 
 
@@ -51,10 +51,8 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      @user = User.find(params[:id])
       # authorize @user
       if @user.update(user_params)
-
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -65,8 +63,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    @user.destroy
     # authorize user
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
@@ -81,6 +78,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:city_id, :role, :first_name, :last_name, :nickname, :email, :encrypted_password, :password_confirmation, :password_reset_token, :current_password, :birthday, :geneder, :phone)
+    params.require(:user).permit(:city_id, :id, :role, :first_name, :last_name, :nickname, :password, :email, :encrypted_password, :password_confirmation, :password_reset_token, :current_password, :birthday, :geneder, :phone)
   end
 end
