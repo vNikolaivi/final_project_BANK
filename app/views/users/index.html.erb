@@ -10,10 +10,10 @@
   <tr>
     <th>&nbsp;Name&nbsp;</th>
     <th>&nbsp;Surname&nbsp;</th>
-    <th> Nickname</th>
-    <th> User Type</th>
-    <th> From Country</th>
-    <th> From City</th>
+    <th> Nickname </th>
+    <th> User Type </th>
+    <th> From Country </th>
+    <th> From City </th>
     <th>&nbsp;email&nbsp;</th>
     <th>&nbsp;Password&nbsp;</th>
     <th>&nbsp;Birthday&nbsp;</th>
@@ -25,26 +25,22 @@
 
   <tbody>
   <% @users.each do |user| %>
-    <% @countries.each do |country| %>
-      <% @cities.each do |city| %>
-        <tr>
-          <td>&nbsp;<%= user.first_name %>&nbsp;</td>
-          <td>&nbsp;<%= user.last_name %>&nbsp;</td>
-          <td> <%= user.nickname %> </td>
-          <td> <%= user.role %> </td>
-          <td> <%= country.name %> </td>
-          <td> <%= city.name %> </td>
-          <td>&nbsp;<%= user.email %>&nbsp;</td>
-          <td>&nbsp;<%= user.encrypted_password %>&nbsp;</td>
-          <td>&nbsp;<%= user.birthday %>&nbsp;</td>
-          <td>&nbsp;<%= user.geneder %>&nbsp;</td>
-          <td>&nbsp;<%= user.phone %>&nbsp;</td>
-          <td> <%= link_to 'Show', user %>&nbsp;&nbsp;</td>
-          <td> <%= link_to 'Edit', edit_user_path(user) %>&nbsp;&nbsp;</td>
-          <td> <%= link_to 'Delete', user, method: :delete, data: {confirm: 'Are you sure?'} %> </td>
-        </tr>
-      <% end %>
-    <% end %>
+    <tr>
+      <td>&nbsp;<%= user.first_name %>&nbsp;</td>
+      <td>&nbsp;<%= user.last_name %>&nbsp;</td>
+      <td> <%= user.nickname %> </td>
+      <td> <%= user.role %> </td>
+      <td>  -  </td>
+      <td>  -  </td>
+      <td>&nbsp;<%= user.email %>&nbsp;</td>
+      <td>&nbsp;<%= user.encrypted_password %>&nbsp;</td>
+      <td>&nbsp;<%= user.birthday %>&nbsp;</td>
+      <td>&nbsp;<%= user.geneder %>&nbsp;</td>
+      <td>&nbsp;<%= user.phone %>&nbsp;</td>
+      <td> <%= link_to 'Show', user %>&nbsp;&nbsp;</td>
+      <td> <%= link_to 'Edit', edit_user_path(user) %>&nbsp;&nbsp;</td>
+      <td> <%= link_to 'Delete', user, method: :delete, data: {confirm: 'Are you sure?'} %> </td>
+    </tr>
   <% end %>
   </tbody>
 </table>

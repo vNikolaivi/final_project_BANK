@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'persons#index'
-  devise_for :users, path: 'admin'
+  devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout'} #path: 'admin'
   resources :users do
     resources :bills
     resources :transactions
@@ -15,9 +15,10 @@ Rails.application.routes.draw do
 
 
   post '/bill_info', to: 'bill_info#create'
-  get "users" => "users#index"
-  get "new_user" => "users#new"
-  #get 'persons/profile', as: 'user_root'
+  get 'users/:id' => 'users#show'
+  get 'users' => 'users#index'
+  get 'new_user' => 'users#new'
+  get 'persons/profile', as: 'user_root'
   get 'signup' => 'users#new'
   get 'sign_in' => 'devise/sessions#new'
   post 'login' => 'sessions#create'
@@ -26,9 +27,9 @@ Rails.application.routes.draw do
 
   delete 'logout' => 'sessions#destroy'
 
-    #resources :users, only: [:new, :create]
+  #resources :users, only: [:new, :create]
   #user_root GET    /persons/profile(.:format)             persons#profile
-    #root 'index'
-   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #root 'index'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

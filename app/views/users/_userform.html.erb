@@ -16,7 +16,7 @@
         <h3> Create New User</h3>
         <div class="form-group">
           <%= form.label :role %>
-          <%= select_tag 'role', options_for_select(['user', 'manager', 'admin'], @role), :autofocus => true, class: 'form-control' %>
+          <%= form.select :role, ['user', 'manager', 'admin'], :autofocus => true, class: 'form-control' %>
         </div>
 
         <div class="form-group">
@@ -36,12 +36,12 @@
 
         <div class="form-group">
           <%= form.label :country %>
-          <%= select_tag 'country', options_for_select(['', 'Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra', 'Angola', 'Anguilla', 'Antarctica', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia-Herzegovina', 'Botswana', 'Bouvet Island', 'Brazil', 'British Indian Ocean Territory', 'Brunei Darussalam', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon', 'Canada', 'Cayman Islands', 'Central African Republic', 'Chad', 'Chile', 'China', 'Christmas Island', 'Cocos (Keeling) Islands', 'Colombia', 'Comoros', 'Congo', 'Congo", "Dem. Republic', 'Cook Islands', 'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czechia', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia', 'European Union', 'Falkland Islands (Malvinas)', 'Faroe Islands', 'Fiji', 'Finland', 'France', 'French Guiana', 'French Southern Territories', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Gibraltar', 'Great Britain', 'Greece', 'Greenland', 'Grenada', 'Guadeloupe (French)', 'Guam (USA)', 'Guatemala', 'Guernsey', 'Guinea', 'Guinea Bissau', 'Guyana', 'Haiti', 'Heard Island and McDonald Islands', 'Honduras', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia', 'International', 'Iran', 'Iraq', 'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Jersey', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', 'Korea-North', 'Korea-South', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macau', 'Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Marshall Islands', 'Martinique (French)', 'Mauritania', 'Mauritius', 'Mayotte', 'Mexico', 'Micronesia', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Montserrat', 'Morocco', 'Mozambique', 'Myanmar', 'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'Netherlands Antilles', 'New Caledonia (French)', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Niue', 'Norfolk Island', 'Northern Mariana Islands', 'Norway', 'Oman', 'Pakistan', 'Palau', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Pitcairn Island', 'Poland', 'Polynesia (French)', 'Portugal', 'Puerto Rico', 'Qatar', 'Reunion (French)', 'Romania', 'Russia', 'Rwanda', 'Saint Helena', 'Saint Kitts & Nevis Anguilla', 'Saint Lucia', 'Saint Pierre and Miquelon', 'Saint Vincent & Grenadines', 'Samoa', 'San Marino', 'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Solomon Islands', 'Somalia', 'South Africa', 'South Georgia & South Sandwich Islands', 'South Sudan', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 'Svalbard and Jan Mayen Islands', 'Swaziland', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', 'Togo', 'Tokelau', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Turks and Caicos Islands', 'Tuvalu', 'U.K.', 'USA', 'USA Minor Outlying Islands', 'Uganda', 'Ukraine', 'United Arab Emirates', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican', 'Venezuela', 'Vietnam', 'Virgin Islands (British)', 'Virgin Islands (USA)', 'Wallis and Futuna Islands', 'Western Sahara', 'Yemen', 'Zambia', 'Zimbabwe'], @country), class: 'form-control' %>
+          <%= select_tag 'country', options_from_collection_for_select(Country.all, :id, :name), class: 'form-control' %>
         </div>
 
         <div class="form-group">
           <%= form.label :city %>
-          <%= select_tag 'city', options_for_select(['', 'Cherkasy', 'Chernihiv', 'Chernivtsi', 'Crimea', 'Dnipropetrovsk', 'Donetsk', 'Ivano-Frankivsk', 'Kharkiv', 'Kherson', 'Khmelnytskyy', 'Kiev', 'Kiev City', 'Kirovohrad', 'Luhansk', 'Lviv', 'Mykolayiv', 'Odessa', 'Poltava', 'Rivne', 'Sevastopol City', 'Sumy', 'Ternopil', 'Transcarpathia', 'Vinnytsya', 'Volyn', 'Zaporizhzhya', 'Zhytomyr'], @city), :autofocus => true, class: 'form-control' %>
+          <%= select_tag 'city', options_from_collection_for_select(City.all, :id, :name), class: 'form-control' %>
         </div>
 
         <div class="form-group">
@@ -66,7 +66,7 @@
 
         <div class="form-group">
           <%= form.label :geneder %>
-          <%= select_tag 'city', options_for_select(['', 'man', 'women'], @geneder), :autofocus => true, class: 'form-control' %>
+          <%= form.select :geneder, ['', 'man', 'women'], :autofocus => true, class: 'form-control' %>
         </div>
 
         <div class="form-group">

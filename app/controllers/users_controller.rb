@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #before_filter :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy] #authenticate_user!
   #set_user, only: [:show, :edit, :update, :destroy]
   # after_action :verify_authorized
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    set_user
     # authorize @user
   end
 

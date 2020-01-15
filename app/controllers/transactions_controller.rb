@@ -66,4 +66,8 @@ class TransactionsController < ApplicationController
   def transaction_params
     params.require(:transaction).permit(:id, :sender_id, :recipient_id, :amount, :status, :created_at, :updated_at)
   end
+
+  def operation
+
+  end
 end
