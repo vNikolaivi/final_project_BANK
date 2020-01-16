@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
 
   post '/bill_info', to: 'bill_info#create'
+  #get 'user_root', to: redirect('/users/edit'), as: :user_root
   get 'users/:id' => 'users#show'
   get 'users' => 'users#index'
   get 'new_user' => 'users#new'
