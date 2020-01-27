@@ -5,7 +5,7 @@
     <li><%= link_to 'Bills', bills_path(current_user) %></li>
     <li><%= link_to 'Transactions', transactions_path(current_user) %></li>
     <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
-  <% elsif current_user.try(:admin?) or current_user.try(:superadmin?) %>
+  <% elsif current_user.try(:admin?) or current_user.try(:manager?) %>
     <li><%= link_to 'Owners', users_path %></li>
     <li><%= link_to 'Client Cards', cards_path %></li>
     <li><%= link_to 'Managers', managers_path %></li>

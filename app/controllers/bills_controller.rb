@@ -1,24 +1,38 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  after_action :verify_authorized
   # GET /bills
   # GET /bills.json
   def index
-    @bill = Bill.all
-  end
+    if params[:user_id]
+    @bills = Bill.where("user_id = ?", params[:user_id])
+    user = User.find(params[:user_id])
+    authorize user
+    else
+      @bills = Bill.all
+      authorize current_user
+    end
+    end
 
   # GET /bills/1
   # GET /bills/1.json
   def show
+    @transactions = Transaction.all
+    user = User.find(@bill.user.id)
+    authorize user
   end
 
   # GET /bills/new
   def new
     @bill = Bill.new
+    @user = current_user
+    authorize @user
   end
 
   # GET /bills/1/edit
   def edit
+    authorize User
   end
 
   # POST /bills
@@ -33,6 +47,8 @@ class BillsController < ApplicationController
         format.html { render :new }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
       end
+      user = User.find(@bill.user_id)
+      authorize user
     end
   end
 
@@ -47,13 +63,18 @@ class BillsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
       end
+      authorize User
     end
   end
 
   # DELETE /bills/1
   # DELETE /bills/1.json
   def destroy
-    @bill.destroy
+    transactions = Transaction.where("bill_id = ? or 'from' = ? or 'to' = ?", params[:id], params[:id], params[:id])
+    transactions.each(&:destroy)
+    # then destroy the account)
+    bill.destroy
+    authorize User
     respond_to do |format|
       format.html { redirect_to bills_url, notice: 'Bill was successfully deleted.' }
       format.json { head :no_content }

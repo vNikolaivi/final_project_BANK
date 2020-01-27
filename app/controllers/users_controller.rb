@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  #before_filter :authenticate_user!
+   #before_filter :authenticate_user!
+   #before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy] #authenticate_user!
+  #validates :email, :first_name, :last_name, :birthday, :phone, presence: true
   #set_user, only: [:show, :edit, :update, :destroy]
   # after_action :verify_authorized
 
@@ -18,17 +20,17 @@ class UsersController < ApplicationController
       @users = User.all
       @filter = 'All'
     end
-    #authorize User
+      #authorize User
   end
 
   def show
     set_user
-    # authorize @user
+      #authorize @user
   end
 
   def new
     @user = User.new
-    # authorize User
+      #authorize User
   end
 
   def edit
@@ -47,13 +49,13 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-    #authorize current_user
+      #authorize current_user
   end
 
 
   def update
     respond_to do |format|
-      # authorize @user
+      #authorize @user
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
@@ -71,6 +73,14 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def authenticate_user!(opts={})
+    opts[:scope] = :user
+    warden.authenticate!(opts) if !devise_controller? || opts.delete(:force)
+
   end
 
   private
