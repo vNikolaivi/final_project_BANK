@@ -57,4 +57,5 @@ end
 gem 'cancancan'
 gem 'devise'
 gem 'rails_12factor'
+gem 'rails_admin', '~> 2.0'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

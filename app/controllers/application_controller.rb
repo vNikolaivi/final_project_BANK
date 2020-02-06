@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
+  include Devise::Controllers::Helpers
+  #include CurrentUser
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   #before_action :authorized!
-   helper_method :current_user
+  helper_method :current_user
   helper_method :logged_in?
-
   protect_from_forgery with: :exception
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -22,11 +23,19 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    @current_user ||= session[:current_user_id] && User.find_by(id: session[:current_user_id])
+  end
+
+  def current_role
+    @current_role ||= User.find_by(role: session[:user_role])
   end
 
   def logged_in?
     !current_user.nil?
+  end
+
+  def user_signed_in?
+    !current_user.present?
   end
 
   def authorized

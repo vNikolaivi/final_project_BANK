@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-   #before_filter :authenticate_user!
-   #before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy] #authenticate_user!
-  #validates :email, :first_name, :last_name, :birthday, :phone, presence: true
+  #load_and_authorize_resource
+  #before_action :authenticate_user!
+  include Devise::Controllers::Helpers
+  before_action :authenticate_user!
+   before_action :set_user, only: [:show, :edit, :update, :destroy] #authenticate_user!
   #set_user, only: [:show, :edit, :update, :destroy]
   # after_action :verify_authorized
 
@@ -76,11 +77,9 @@ class UsersController < ApplicationController
   end
 
   private
-
   def authenticate_user!(opts={})
     opts[:scope] = :user
     warden.authenticate!(opts) if !devise_controller? || opts.delete(:force)
-
   end
 
   private

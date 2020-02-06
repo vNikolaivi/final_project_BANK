@@ -1,5 +1,4 @@
-<% if user_signed_in? %>
-  <span>Hello, <%= current_user.email %></span>
+<% if signed_in?(:user) %>
   <% if current_user.try(:user?) %>
     <li><%= link_to 'My Accounts', users_path(current_user) %></li>
     <li><%= link_to 'Bills', bills_path(current_user) %></li>

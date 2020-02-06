@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: 'persons#index'
-  devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout'} #path: 'admin'
+  devise_for :user#s, path_names: {sign_in: 'login', sign_out: 'logout'} #path: 'admin'
   resources :users do
     resources :bills
     resources :transactions
   end
 
-  resources :users
-  resources :cards
-  resources :bills
-  resources :transactions
-  resources :managers
+  scope "/admin", as: :admin do
+    resources :users
+    resources :cards
+    resources :bills
+    resources :transactions
+    resources :managers
+  end
 
 
   post '/bill_info', to: 'bill_info#create'
