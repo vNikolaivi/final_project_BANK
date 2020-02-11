@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   #load_and_authorize_resource
-  #before_action :authenticate_user!
-  include Devise::Controllers::Helpers
   before_action :authenticate_user!
-   before_action :set_user, only: [:show, :edit, :update, :destroy] #authenticate_user!
+  include Devise::Controllers::Helpers
+  before_action :set_user, only: [:show, :edit, :update, :destroy] #authenticate_user!
   #set_user, only: [:show, :edit, :update, :destroy]
   # after_action :verify_authorized
 
