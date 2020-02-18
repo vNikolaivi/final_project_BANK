@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /cards
   # GET /cards.json
@@ -27,7 +28,7 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
     respond_to do |format|
       if @card.save
-        format.html { redirect_to action: "index", notice: 'Card was successfully created.' }
+        format.html { redirect_to action: 'index', notice: 'Card was successfully created.' }
         format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new }

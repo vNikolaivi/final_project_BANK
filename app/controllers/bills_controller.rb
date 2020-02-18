@@ -8,10 +8,10 @@ class BillsController < ApplicationController
     if params[:user_id]
     @bills = Bill.where("user_id = ?", params[:user_id])
     user = User.find(params[:user_id])
-    authorize user
+      #authorize user
     else
       @bills = Bill.all
-      authorize current_user
+      #authorize current_user
     end
     end
 
@@ -20,19 +20,19 @@ class BillsController < ApplicationController
   def show
     @transactions = Transaction.all
     user = User.find(@bill.user.id)
-    authorize user
+      #authorize user
   end
 
   # GET /bills/new
   def new
     @bill = Bill.new
     @user = current_user
-    authorize @user
+      #authorize @user
   end
 
   # GET /bills/1/edit
   def edit
-    authorize User
+    #authorize User
   end
 
   # POST /bills

@@ -22,7 +22,7 @@
       <td>&nbsp;<%= card.security_type %>&nbsp;</td>
       <td>&nbsp;<%= card.security_code %>&nbsp;</td>
       <td>&nbsp;<%= card.expires_end %>&nbsp;</td>
-      <td><%= link_to 'Show', card %></td>
+      <td><%= link_to 'Show', cards_path %></td>
       <td><%= link_to 'Edit', edit_card_path(card) %></td>
       <td><%= link_to 'Delete', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

@@ -1,5 +1,6 @@
 class PersonsController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:index]
+  before_action :authenticate_user!
   #validates :email, :first_name, :last_name, :birthday, :geneder, :phone, presence: true
 
   #validates :email, format: { with: /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/, without: /test.com$/, message: 'Only emails allowed' }

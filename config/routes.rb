@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'persons#index'
   devise_for :user#s, path_names: {sign_in: 'login', sign_out: 'logout'} #path: 'admin'
   resources :users do
+    resources :cards
     resources :bills
     resources :transactions
   end
@@ -21,6 +22,9 @@ Rails.application.routes.draw do
   #get 'user_root', to: redirect('/users/edit'), as: :user_root
   get 'users/:id' => 'users#show'
   get 'users' => 'users#index'
+  get 'managers' => 'managers#index'
+  get 'bills' => 'bills#index'
+  get 'transactions' => 'transactions#index'
   get 'new_user' => 'users#new'
   get 'persons/profile', as: 'user_root'
   get 'signup' => 'users#new'
@@ -28,7 +32,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   get 'index', to: 'sessions#index'
   get 'authorized', to: 'sessions#page_requires_login'
-
+  get 'cards' => 'cards#index'
   delete 'logout' => 'sessions#destroy'
 
   #resources :users, only: [:new, :create]

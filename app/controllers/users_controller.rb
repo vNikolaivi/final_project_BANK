@@ -6,6 +6,10 @@ class UsersController < ApplicationController
   #set_user, only: [:show, :edit, :update, :destroy]
   # after_action :verify_authorized
 
+  def card_number_generator
+    puts [*('0'..'9')].sample(8).join
+  end
+
   def index
     if params[:filter] == 'Users'
       @users = User.where('role = 0')

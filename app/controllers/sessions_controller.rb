@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :index]
+  before_action :authenticate_user!
 
   def new
     #login Page - new.html.erb

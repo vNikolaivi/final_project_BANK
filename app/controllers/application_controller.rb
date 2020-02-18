@@ -23,13 +23,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_user
-    @current_user ||= session[:current_user_id] && User.find_by(id: session[:current_user_id])
-  end
+  #def current_user
+  #  @current_user ||= session[:current_user_id] && User.find_by(id: session[:current_user_id])
+  #end
 
-  def current_role
-    @current_role ||= User.find_by(role: session[:user_role])
-  end
+  # def current_user_role
+  #  @current_user ||= session[:current_user_role] && User.find_by(role: session[:current_user_role])
+  #end
 
   def logged_in?
     !current_user.nil?
