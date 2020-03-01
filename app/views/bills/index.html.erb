@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-  <% @bill.each do |bill| %>
+  <% @bills.each do |bill| %>
     <tr>
       <td><%= bill.id %>&nbsp;</td>
       <td>&nbsp;<%= bill.bill_type %>&nbsp;</td>
@@ -28,10 +28,10 @@
       <td>&nbsp;<%= bill.replanishment_at %>&nbsp;</td>
       <td>&nbsp;<%= bill.expired_bill_at %>&nbsp;</td>
       <td>&nbsp;<%= bill.amount_limit %>&nbsp;</td>
-      <td><%= link_to 'Show', bill %></td>
+      <td> <%= link_to 'Show', bill %> </td>
       <% if current_user.admin? or current_user.superadmin? %>
-      <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-      <td><%= link_to 'Delete', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td> <%= link_to 'Edit', edit_bill_path(bill) %></td>
+      <td> <%= link_to 'Delete', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
     </tr>
   <% end %>

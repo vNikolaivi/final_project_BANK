@@ -1,6 +1,21 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_card, only: %i[show update new destroy]
   before_action :authenticate_user!
+
+  def card_generator
+    1.times do |i|
+      random_numeric = [*('0'..'9')].sample(8).join
+      date_now = Time.now.strftime("%e%m%Y").to_s
+      card_number = date_now + random_numeric
+      card_number = card_number.split('')
+      first_block = card_number[0..-13]
+      second_block = card_number[4..-9]
+      third_block = card_number[8..-5]
+      fourth_block = card_number[12..-1]
+      x = first_block.join + " " + second_block.join + " " + third_block.join + " " + fourth_block.join
+      return x << i, ' '
+    end
+  end
 
   # GET /cards
   # GET /cards.json
@@ -11,6 +26,7 @@ class CardsController < ApplicationController
   # GET /cards/1
   # GET /cards/1.json
   def show
+    set_card
   end
 
   # GET /cards/new
@@ -28,7 +44,7 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
     respond_to do |format|
       if @card.save
-        format.html { redirect_to action: 'index', notice: 'Card was successfully created.' }
+        format.html { redirect_to action: :index, notice: 'Card was successfully created.' }
         format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new }
@@ -70,6 +86,6 @@ class CardsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def card_params
-    params.require(:card).permit(:card_number, :security_type, :security_code, :expires_end)
+    params.require(:card).permit(:id, :card_number, :security_type, :security_code, :expires_end)
   end
 end

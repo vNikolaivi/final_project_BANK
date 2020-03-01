@@ -1,11 +1,9 @@
 class ApplicationController < ActionController::Base
   include Devise::Controllers::Helpers
   include Pundit
-  #include CurrentUser
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  #before_action :authorized!
   helper_method :current_user
   helper_method :logged_in?
   protect_from_forgery with: :exception
@@ -22,14 +20,6 @@ class ApplicationController < ActionController::Base
       user_params.permit(:email, :password, :password_confirmation)
     end
   end
-
-  #def current_user
-  #  @current_user ||= session[:current_user_id] && User.find_by(id: session[:current_user_id])
-  #end
-
-  # def current_user_role
-  #  @current_user ||= session[:current_user_role] && User.find_by(role: session[:current_user_role])
-  #end
 
   def logged_in?
     !current_user.nil?

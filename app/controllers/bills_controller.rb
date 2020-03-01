@@ -1,33 +1,33 @@
 class BillsController < ApplicationController
-  before_action :set_bill, only: [:show, :edit, :update, :destroy]
+  before_action :set_bill, except: %i[index]
   before_action :authenticate_user!
-  after_action :verify_authorized
+  #after_action :verify_authorized
   # GET /bills
   # GET /bills.json
   def index
-    if params[:user_id]
-    @bills = Bill.where("user_id = ?", params[:user_id])
-    user = User.find(params[:user_id])
-      #authorize user
-    else
+    #  if params[:user_id]
+    #  @bills = Bill.where('user_id = ?', params[:user_id])
+    #  user = User.find(params[:user_id])
+    #  #authorize user
+    # else
       @bills = Bill.all
       #authorize current_user
-    end
-    end
+    #end
+  end
 
   # GET /bills/1
   # GET /bills/1.json
   def show
     @transactions = Transaction.all
     user = User.find(@bill.user.id)
-      #authorize user
+    #authorize user
   end
 
   # GET /bills/new
   def new
     @bill = Bill.new
-    @user = current_user
-      #authorize @user
+      #@user = current_user
+    #authorize @user
   end
 
   # GET /bills/1/edit
@@ -41,7 +41,7 @@ class BillsController < ApplicationController
     @bill = Bill.new(bill_params)
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to action: 'index', notice: 'Bill was successfully created.' }
+        format.html { redirect_to action: :index, notice: 'Bill was successfully created.' }
         format.json { render :show, status: :created, location: @bill }
       else
         format.html { render :new }
@@ -80,7 +80,9 @@ class BillsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_bill
     @bill = Bill.find(params[:id])

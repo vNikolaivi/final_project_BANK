@@ -1,14 +1,7 @@
 class UsersController < ApplicationController
-  #load_and_authorize_resource
   before_action :authenticate_user!
   include Devise::Controllers::Helpers
-  before_action :set_user, only: [:show, :edit, :update, :destroy] #authenticate_user!
-  #set_user, only: [:show, :edit, :update, :destroy]
-  # after_action :verify_authorized
-
-  def card_number_generator
-    puts [*('0'..'9')].sample(8).join
-  end
+  before_action :set_user, except: %i[index]
 
   def index
     if params[:filter] == 'Users'
@@ -24,17 +17,17 @@ class UsersController < ApplicationController
       @users = User.all
       @filter = 'All'
     end
-      #authorize User
+    #authorize User
   end
 
   def show
     set_user
-      #authorize @user
+    #authorize @user
   end
 
   def new
     @user = User.new
-      #authorize User
+    #authorize User
   end
 
   def edit
@@ -53,7 +46,7 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-      #authorize current_user
+    #authorize current_user
   end
 
 
@@ -80,7 +73,8 @@ class UsersController < ApplicationController
   end
 
   private
-  def authenticate_user!(opts={})
+
+  def authenticate_user!(opts = {})
     opts[:scope] = :user
     warden.authenticate!(opts) if !devise_controller? || opts.delete(:force)
   end

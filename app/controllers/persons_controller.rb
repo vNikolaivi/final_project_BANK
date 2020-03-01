@@ -1,5 +1,5 @@
 class PersonsController < ApplicationController
-  skip_before_action :authenticate_user!, :only => [:index]
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :authenticate_user!
   #validates :email, :first_name, :last_name, :birthday, :geneder, :phone, presence: true
 
@@ -9,29 +9,13 @@ class PersonsController < ApplicationController
   #validates :phone, numericality: {only_integer: true, greater_than: 12}
   # validates :first_name, uniqueness: {scope: :email, message: 'should only one user with name and email'}
 
-#before_action :authenticate_user!
-#after_action :verify_authorized
+  #before_action :authenticate_user!
+  #after_action :verify_authorized
 
-#def profile
-#@user = User.create(params.require(:user).permit(:email,
-#  :password))
-#session[:user_id] = @user.id
-# redirect_to '/index'
-#end
+  #def profile
+  #@user = User.create(params.require(:user).permit(:email,
+  #  :password))
+  #session[:user_id] = @user.id
+  # redirect_to '/index'
+  #end
 end
-
-# def index
-# if params[:filter] == 'Users'
-# @users = User.where("role = 0")
-#  @filter = 'Users'
-#elsif params[:filter] == 'Managers'
-#   @users = User.where("role > 0")
-#  @filter = 'Managers'
-#else
-#   @users = User.all
-#   @filter = 'All'
-#  end
-#  authorize User
-#  end
-
-

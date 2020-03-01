@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create, :index]
+  skip_before_action :authorized, only: %i[new create index]
   before_action :authenticate_user!
 
   def new
@@ -28,4 +28,4 @@ class SessionsController < ApplicationController
   def page_requires_login
   end
 
-  end
+end

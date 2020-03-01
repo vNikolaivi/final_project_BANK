@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :set_transaction, except: %i[index]
   before_action :authenticate_user!
 
   # GET /transactions
@@ -21,13 +21,14 @@ class TransactionsController < ApplicationController
   # GET /transactions/1/edit
   def edit
   end
+
   # POST /transactions
   # POST /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to action: "index", notice: 'Transaction was successfully created.' }
+        format.html { redirect_to action: :index, notice: 'Transaction was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -35,6 +36,7 @@ class TransactionsController < ApplicationController
       end
     end
   end
+
   # PATCH/PUT /transactions/1
   # PATCH/PUT /transactions/1.json
   def update
@@ -48,6 +50,7 @@ class TransactionsController < ApplicationController
       end
     end
   end
+
   # DELETE /transactions/1
   # DELETE /transactions/1.json
   def destroy
@@ -57,7 +60,9 @@ class TransactionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_transaction
     @transaction = Transaction.find(params[:id])

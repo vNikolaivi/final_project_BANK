@@ -1,5 +1,5 @@
 class ManagersController < ApplicationController
-  before_action :set_manager, only: [:show, :edit, :update, :destroy]
+  before_action :set_manager, except: %i[index]
   before_action :authenticate_user!
 
   # GET /managers
@@ -21,13 +21,14 @@ class ManagersController < ApplicationController
   # GET /managers/1/edit
   def edit
   end
+
   # POST /managers
   # POST /managers.json
   def create
     @manager = Manager.new(manager_params)
     respond_to do |format|
       if @manager.save
-        format.html { redirect_to action: "index", notice: 'Manager was successfully created.' }
+        format.html { redirect_to action: :index, notice: 'Manager was successfully created.' }
         format.json { render :show, status: :created, location: @manager }
       else
         format.html { render :new }
@@ -35,6 +36,7 @@ class ManagersController < ApplicationController
       end
     end
   end
+
   # PATCH/PUT /managers/1
   # PATCH/PUT /managers/1.json
   def update
@@ -48,6 +50,7 @@ class ManagersController < ApplicationController
       end
     end
   end
+
   # DELETE /managers/1
   # DELETE /managers/1.json
   def destroy
@@ -57,7 +60,9 @@ class ManagersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_manager
     @manager = Manager.find(params[:id])
@@ -65,6 +70,6 @@ class ManagersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def manager_params
-    params.require(:manager).permit(:id, :first_name, :last_name, :nickname, :email, :encrypted_password )
+    params.require(:manager).permit(:id, :first_name, :last_name, :nickname, :email, :encrypted_password)
   end
 end
