@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   post '/bill_info', to: 'bill_info#create'
   #get 'user_root', to: redirect('/users/edit'), as: :user_root
+
   get 'users/:id' => 'users#show'
   get 'users' => 'users#index'
   get 'new_user' => 'users#new'
@@ -26,11 +27,14 @@ Rails.application.routes.draw do
   get 'cards' => 'cards#index'
   get 'new_card' => 'cards#new'
   get 'cards' => 'cards#show'
+  post 'cards' => 'cards#create'
 
   get 'managers' => 'managers#index'
+
   get 'bills' => 'bills#index'
   get 'bills' => 'bills#show'
   get 'new_bill' => 'bills#new'
+
   get 'transactions' => 'transactions#index'
   get 'persons/profile', as: 'user_root'
   #get 'signup' => 'users#new'

@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
 # Include default devise modules. Others available are:
 # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  attr_accessor :email, :password, :password_confirmation
+
 # attr_accessor :city, :city_id
 #belongs_to :city
   has_many :bills

@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[show update new destroy]
+  before_action :set_card, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def card_generator

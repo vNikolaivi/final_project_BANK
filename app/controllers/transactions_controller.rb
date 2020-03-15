@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :set_transaction, except: %i[index]
+  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /transactions

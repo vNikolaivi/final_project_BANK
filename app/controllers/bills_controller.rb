@@ -1,9 +1,23 @@
 class BillsController < ApplicationController
-  before_action :set_bill, except: %i[index]
+  before_action :set_bill, only: %i[show edit update destroy]
   before_action :authenticate_user!
   #after_action :verify_authorized
   # GET /bills
   # GET /bills.json
+  def card_generator
+    1.times do |i|
+      random_numeric = [*('0'..'9')].sample(8).join
+      date_now = Time.now.strftime("%e%m%Y").to_s
+      card_number = date_now + random_numeric
+      card_number = card_number.split('')
+      first_block = card_number[0..-13]
+      second_block = card_number[4..-9]
+      third_block = card_number[8..-5]
+      fourth_block = card_number[12..-1]
+      x = first_block.join + " " + second_block.join + " " + third_block.join + " " + fourth_block.join
+      return x << i, ' '
+    end
+  end
   def index
     #  if params[:user_id]
     #  @bills = Bill.where('user_id = ?', params[:user_id])

@@ -7,6 +7,7 @@
   <tr>
     <th>| # |</th>
     <th>&nbsp;Bill Type  |</th>
+    <th>&nbsp;User Name  |</th>
     <th>&nbsp;Balance  |</th>
     <th>&nbsp;Percent  |</th>
     <th>&nbsp;Created Date  |</th>
@@ -22,6 +23,7 @@
     <tr>
       <td><%= bill.id %>&nbsp;</td>
       <td>&nbsp;<%= bill.bill_type %>&nbsp;</td>
+      <td>&nbsp;<%= user.last_name %>&nbsp;<%= user.first_name %> </td>
       <td>&nbsp;<%= bill.amount %>&nbsp;</td>
       <td>&nbsp;<%= bill.percent %>&nbsp;</td>
       <td>&nbsp;<%= bill.created_at %>&nbsp;</td>

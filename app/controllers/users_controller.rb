@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   include Devise::Controllers::Helpers
-  before_action :set_user, except: %i[index]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:filter] == 'Users'

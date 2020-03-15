@@ -1,53 +1,64 @@
 <div class="container">
   <div class="row justify-content-start">
     <div class="col-4">
-<%= form_with(model: bill, local: true) do |form| %>
-  <% if bill.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bill.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <%= form_with(model: bill, local: true) do |form| %>
+        <% if bill.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(bill.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-        <% bill.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+            <ul>
+              <% bill.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="form-group">
-     <%= form.label :bill_type %>
-    <%= select_tag 'bill type', options_for_select(%w(Personal Deposit Credit), @bill_type), class: "form-control" %>
-  </div>
+        <div class="form-group">
+          <%= form.label :bill_type %>
+          <%= select_tag 'bill type', options_for_select(%w(Personal Deposit Credit), @bill_type), class: "form-control" %>
+        </div>
 
-  <div class="form-group">
-    <%= form.label :amount %>
-    <%= form.text_field :amount, class: "form-control" %>
-  </div>
+        <div class="form-group">
+          <%= form.label :user_name %>
+          <%= select_tag 'user_name', options_from_collection_for_select(User.all, :id, :last_name), class: 'form-control' %>
+        </div>
 
-  <div class="form-group">
-    <%= form.label :percent %>
-    <%= form.text_field :percent, class: "form-control" %>
-  </div>
+        <div class="form-group">
+          <%= form.label :amount %>
+          <%= form.text_field :amount, class: "form-control" %>
+        </div>
 
-<div class="form-group">
-  <%= form.label :replenishment_at %>
-  <%= form.text_field :replanishment_at, class: "form-control" %>
-</div>
+        <div class="form-group">
+          <%= form.label :percent %>
+          <%= form.text_field :percent, class: "form-control" %>
+        </div>
 
-  <div class="form-group">
-    <%= form.label :expired_bill_at %>
-    <%= form.text_field :expired_bill_at, class: "form-control" %>
-  </div>
+        <div class="form-group">
+          <%= form.label :replenishment_at %>
+          <%= form.text_field :replanishment_at, class: "form-control" %>
+        </div>
 
-<div class="form-group">
-  <%= form.label :amount_limit %>
-  <%= form.text_field :amount_limit, class: "form-control" %>
-</div>
+        <div class="form-group">
+          <%= form.label :expired_bill_at %>
+          <%= form.text_field :expired_bill_at, class: "form-control" %>
+        </div>
 
-  <div class="actions">
-    <%= form.submit "Create Bill", class: "btn-primary" %>
-  </div>
-<% end %>
+        <div class="form-group">
+          <%= form.label :amount_limit %>
+          <%= form.text_field :amount_limit, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :card_number %>
+          <%= form.text_field :card_generator, class: "form-control" %>
+          <%= form.submit "Generate Card Number", class: "btn-primary" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Create Bill", class: "btn-primary" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
