@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :managers
   end
 
+  resources :bills
+  get :card_generator, to: 'bills#card_generator', as: card_generator
   post '/bill_info', to: 'bill_info#create'
   #get 'user_root', to: redirect('/users/edit'), as: :user_root
 
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
   get 'bills' => 'bills#index'
   get 'bills' => 'bills#show'
   get 'new_bill' => 'bills#new'
+  post 'bills' => 'bills#create'
 
   get 'transactions' => 'transactions#index'
   get 'persons/profile', as: 'user_root'

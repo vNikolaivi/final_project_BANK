@@ -16,12 +16,12 @@
 
         <div class="form-group">
           <%= form.label :bill_type %>
-          <%= select_tag 'bill type', options_for_select(%w(Personal Deposit Credit), @bill_type), class: "form-control" %>
+          <%= select_tag 'bill type', options_for_select(%w(Personal Deposit Credit), params[:bill_type]), method: :post, class: "form-control" %>
         </div>
 
         <div class="form-group">
           <%= form.label :user_name %>
-          <%= select_tag 'user_name', options_from_collection_for_select(User.all, :id, :last_name), class: 'form-control' %>
+          <%= select_tag 'user_name', options_from_collection_for_select(User.all, :id, :last_name, :selected => user.id), class: 'form-control' %>
         </div>
 
         <div class="form-group">
@@ -51,7 +51,7 @@
 
         <div class="form-group">
           <%= form.label :card_number %>
-          <%= form.text_field :card_generator, class: "form-control" %>
+          <%= form.text_field :card_generator_path, method: :get, class: "form-control" %>
           <%= form.submit "Generate Card Number", class: "btn-primary" %>
         </div>
 

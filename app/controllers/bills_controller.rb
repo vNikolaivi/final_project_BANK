@@ -19,21 +19,21 @@ class BillsController < ApplicationController
     end
   end
   def index
-    #  if params[:user_id]
-    #  @bills = Bill.where('user_id = ?', params[:user_id])
-    #  user = User.find(params[:user_id])
-    #  #authorize user
-    # else
+    if params[:user_id]
+    @bills = Bill.where('user_id = ?', params[:user_id])
+    user = User.find(params[:user_id])
+    authorize user
+    else
       @bills = Bill.all
       #authorize current_user
-    #end
+    end
   end
 
   # GET /bills/1
   # GET /bills/1.json
   def show
-    @transactions = Transaction.all
-    user = User.find(@bill.user.id)
+    #@transactions = Transaction.all
+    #user = User.find(@bill.user.id)
     #authorize user
   end
 
@@ -61,8 +61,8 @@ class BillsController < ApplicationController
         format.html { render :new }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
       end
-      user = User.find(@bill.user_id)
-      authorize user
+        #user = User.find(@bill.user_id)
+        #authorize user
     end
   end
 
