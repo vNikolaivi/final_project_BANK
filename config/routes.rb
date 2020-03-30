@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :bills
-  get :card_generator, to: 'bills#card_generator', as: card_generator
+  #get :card_generator, to: 'bills#card_generator', as: card_generator
   post '/bill_info', to: 'bill_info#create'
   #get 'user_root', to: redirect('/users/edit'), as: :user_root
 

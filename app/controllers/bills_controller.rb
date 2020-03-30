@@ -1,6 +1,7 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: %i[show edit update destroy]
   before_action :authenticate_user!
+
   #after_action :verify_authorized
   # GET /bills
   # GET /bills.json
@@ -18,11 +19,12 @@ class BillsController < ApplicationController
       return x << i, ' '
     end
   end
+
   def index
     if params[:user_id]
-    @bills = Bill.where('user_id = ?', params[:user_id])
-    user = User.find(params[:user_id])
-    authorize user
+      @bills = Bill.where('user_id = ?', params[:user_id])
+      user = User.find(params[:user_id])
+      authorize user
     else
       @bills = Bill.all
       #authorize current_user
@@ -40,7 +42,7 @@ class BillsController < ApplicationController
   # GET /bills/new
   def new
     @bill = Bill.new
-      #@user = current_user
+    #@user = current_user
     #authorize @user
   end
 
@@ -61,8 +63,8 @@ class BillsController < ApplicationController
         format.html { render :new }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
       end
-        #user = User.find(@bill.user_id)
-        #authorize user
+      #user = User.find(@bill.user_id)
+      #authorize user
     end
   end
 
