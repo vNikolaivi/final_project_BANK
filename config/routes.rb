@@ -39,6 +39,10 @@ Rails.application.routes.draw do
   post 'bills' => 'bills#create'
 
   get 'transactions' => 'transactions#index'
+  get 'transactions' => 'transactions#show'
+  get 'new_transaction' => 'transactions#new'
+  post 'transactions' => 'transactions#create'
+
   get 'persons/profile', as: 'user_root'
   #get 'signup' => 'users#new'
   get 'sign_in' => 'devise/sessions#new'
