@@ -1,4 +1,5 @@
 class Bill < ApplicationRecord
+  #before_save :card_generator
   #attr_accessor :user, :user_id, :sender_id, :recipient_id
   belongs_to :user
   has_one :bill_request

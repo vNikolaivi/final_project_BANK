@@ -5,8 +5,14 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
+    if params[:user_id]
+      @transactions = Transaction.where('user_id = ?', params[:user_id])
+      user = User.find(params[:user_id])
+      authorize user
+    else
     @transactions = Transaction.all
-  end
+    end
+    end
 
   # GET /transactions/1
   # GET /transactions/1.json
@@ -48,6 +54,7 @@ class TransactionsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
+      authorize User
     end
   end
 

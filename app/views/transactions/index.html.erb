@@ -22,13 +22,15 @@
       <td><%= transaction.id %>&nbsp;</td>
       <td><%= transaction.sender_id %>&nbsp;</td>
       <td>&nbsp;<%= transaction.recipient_id %>&nbsp;</td>
-      <td>&nbsp;<%= transaction.amount %>&nbsp;</td>
+      <td>&nbsp;$<%= transaction.amount %>&nbsp;</td>
       <td>&nbsp;<%= transaction.status %>&nbsp;</td>
       <td>&nbsp;<%= transaction.created_at %>&nbsp;</td>
       <td>&nbsp;<%= transaction.updated_at %>&nbsp;</td>
-      <td><%= link_to 'Show', transaction %>&nbsp;&nbsp;</td>
-      <td><%= link_to 'Edit', edit_transaction_path(transaction) %>&nbsp;&nbsp;</td>
-      <td><%= link_to 'Delete', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Show', transactions_path %>&nbsp;&nbsp;</td>
+      <% if current_user.admin? or current_user.superadmin? %>
+      <td><%= link_to 'Edit', edit_user_transaction_path(@transactions, transaction.id) %>&nbsp;&nbsp;</td>
+      <td><%= link_to 'Delete', transactions_path(transaction.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end %>
     </tr>
   <% end %>
   </tbody>
